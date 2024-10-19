@@ -6,7 +6,7 @@ namespace PersonalGameProject
         static void Main(string[] args)
         {
             Game game = new Game();
-            Raylib.InitWindow(800, 400, "My game");
+            Raylib.InitWindow(1200, 800, "My game");
             game.Start();
 
             while (!Raylib.WindowShouldClose())
