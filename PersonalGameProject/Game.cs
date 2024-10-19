@@ -12,45 +12,19 @@ namespace PersonalGameProject
 {
     internal class Game
     {
-        Camera3D camera = new Camera3D();
-        Vector3 movementInput = new Vector3(0);
-        Vector3 mouseInput = new Vector3(0,0,0);
-        Vector3 playerMovement = new Vector3();
-        float playerSpeed = 10;
-        float mouseSensitivity = .3f;
-           
+        Player player = new Player();
+
         public void Start()
         {
-
-            camera.Position = new Vector3(0, 2, 1);
-            camera.Target = new Vector3(0.0f, 2.0f, 0.0f);
-            camera.Up = new Vector3(0, 1, 0);
-            camera.FovY = 100.0f;
-            camera.Projection = CameraProjection.Perspective;
             Raylib.SetTargetFPS(144);
             Raylib.DisableCursor();
+            player.InitCamera();
         }
         public void Run()
         {
-            
-            
-            movementInput = new Vector3(0, 0, 0);
-            if(Raylib.IsKeyDown(KeyboardKey.D) || Raylib.IsKeyDown(KeyboardKey.A) || Raylib.IsKeyDown(KeyboardKey.W) || Raylib.IsKeyDown(KeyboardKey.S))
-            {
-                movementInput.y += Raylib.IsKeyDown(KeyboardKey.D) * Raylib.GetFrameTime() * playerSpeed;
-                movementInput.y -= Raylib.IsKeyDown(KeyboardKey.A) * Raylib.GetFrameTime() * playerSpeed;
-                movementInput.x -= Raylib.IsKeyDown(KeyboardKey.S) * Raylib.GetFrameTime() * playerSpeed;
-                movementInput.x += Raylib.IsKeyDown(KeyboardKey.W) * Raylib.GetFrameTime() * playerSpeed;
-            }
-          
-            mouseInput.x = Raylib.GetMouseDelta().X * mouseSensitivity;
-            mouseInput.y = Raylib.GetMouseDelta().Y * mouseSensitivity;
 
-            Raylib.UpdateCameraPro(ref camera, movementInput, mouseInput, 0);
-            
-            
-            
-            Raylib.BeginMode3D(camera);
+            player.Move();
+            Raylib.BeginMode3D(player.playerCamera);
             Raylib.DrawGrid(200, 1);
             Raylib.DrawPlane(new Vector3(0.0f, 0.0f, 0.0f),new Vector2(32,32), Color.LightGray); // Draw ground
             Raylib.DrawCube(new Vector3 ( -16.0f, 2.5f, 0.0f ), 1.0f, 5.0f, 32.0f, Color.Blue);     // Draw a blue wall
@@ -60,8 +34,8 @@ namespace PersonalGameProject
             
 
             Raylib.EndMode3D();
-            Raylib.DrawText("Position: "+ camera.Position, 10, 10, 30, Color.Black);
-            Raylib.DrawText("Rotation: "+ mouseInput , 10, 50, 30, Color.Black);
+            Raylib.DrawText("Position: "+ player.playerCamera.Position, 10, 10, 30, Color.Black);
+            Raylib.DrawText("Rotation: "+ player.playerCamera.Up , 10, 50, 30, Color.Black);
         }
         public void End()
         {
