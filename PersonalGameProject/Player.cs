@@ -13,8 +13,9 @@ namespace PersonalGameProject
         public Camera3D playerCamera = new Camera3D();
         Vector3 movementInput = new Vector3(0);
         Vector3 mouseInput = new Vector3(0, 0, 0);
-        float playerSpeed = 10;
+        float playerSpeed = 5;
         float mouseSensitivity = .3f;
+        
 
         public void InitCamera()
         {
@@ -24,6 +25,7 @@ namespace PersonalGameProject
             playerCamera.FovY = 100.0f;
             playerCamera.Projection = CameraProjection.Perspective;
         }
+        
         public void Move()
         {
             movementInput = new Vector3(0, 0, 0);
@@ -33,6 +35,14 @@ namespace PersonalGameProject
                 movementInput.y -= Raylib.IsKeyDown(KeyboardKey.A) * Raylib.GetFrameTime() * playerSpeed;
                 movementInput.x -= Raylib.IsKeyDown(KeyboardKey.S) * Raylib.GetFrameTime() * playerSpeed;
                 movementInput.x += Raylib.IsKeyDown(KeyboardKey.W) * Raylib.GetFrameTime() * playerSpeed;
+            }
+            if (Raylib.IsKeyDown(KeyboardKey.LeftShift))
+            {
+                playerSpeed = 15;
+            }
+            else
+            {
+                playerSpeed = 6;
             }
 
             mouseInput.x = Raylib.GetMouseDelta().X * mouseSensitivity;
