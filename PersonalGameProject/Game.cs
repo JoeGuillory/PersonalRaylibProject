@@ -6,6 +6,7 @@ using MathLibrary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
+using System.Net.Security;
 
 
 namespace PersonalGameProject
@@ -23,10 +24,10 @@ namespace PersonalGameProject
         public void Run()
         {
 
-            player.Move();
+            player.Movement();
             Raylib.BeginMode3D(player.playerCamera);
+            player.Draw();
             Raylib.DrawGrid(200, 1);
-           
             Raylib.DrawPlane(new Vector3(0.0f, 0.0f, 0.0f),new Vector2(32,32), Color.LightGray); // Draw ground
             Raylib.DrawCube(new Vector3 ( -16.0f, 2.5f, 0.0f ), 1.0f, 5.0f, 32.0f, Color.Blue);     // Draw a blue wall
             Raylib.DrawCube(new Vector3(16.0f, 2.5f, 0.0f), 1.0f, 5.0f, 32.0f, Color.Lime);      // Draw a green wall
@@ -35,8 +36,7 @@ namespace PersonalGameProject
             
 
             Raylib.EndMode3D();
-            Raylib.DrawText("Position: "+ player.playerCamera.Position, 10, 10, 30, Color.Black);
-            Raylib.DrawText("Rotation: "+ player.playerCamera.Up , 10, 50, 30, Color.Black);
+            Raylib.DrawText("Position: " + player.playerCamera.Position, 10, 10, 10,Color.Black);
         }
         public void End()
         {
