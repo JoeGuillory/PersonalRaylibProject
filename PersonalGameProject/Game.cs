@@ -24,6 +24,7 @@ namespace PersonalGameProject
             Raylib.SetTargetFPS(144);
             Raylib.DisableCursor();
             player.InitCamera();
+            //Need to change file loacation sorry i dont know another good way of doing this
             pistol = Raylib.LoadModel(@"C:\Dev\GitFolder\PersonalRaylibProject\Models\Pistol\pistol.obj");
             pistolTexture = Raylib.LoadTexture(@"C:\Dev\GitFolder\PersonalRaylibProject\Models\Pistol\pistol.png");
             
@@ -43,7 +44,7 @@ namespace PersonalGameProject
             player.Draw();
             Raylib.DrawGrid(200, 1);
             Raylib.DrawPlane(new Vector3(0.0f, 0.0f, 0.0f),new Vector2(32,32), Color.LightGray); // Draw ground
-            Raylib.DrawCube(new Vector3 ( -16.5f, 2.5f, 0.0f ), 1.0f, 5.0f, 32.0f, Color.Blue);     // Draw a blue wall
+            Raylib.DrawCube(new Vector3( -16.5f, 2.5f, 0.0f), 1.0f, 5.0f, 32.0f, Color.Blue);     // Draw a blue wall
             Raylib.DrawCube(new Vector3(16.5f, 2.5f, 0.0f), 1.0f, 5.0f, 32.0f, Color.Lime);      // Draw a green wall
             Raylib.DrawCube(new Vector3(0.0f, 2.5f, 16.5f), 32.0f, 5.0f, 1.0f, Color.Gold); // Draw a gold wall
             Raylib.DrawCube(new Vector3(0.0f, 2.5f, -16.5f), 32.0f, 5.0f, 1.0f, Color.Gold); // Oposite Gold wall

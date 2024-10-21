@@ -31,6 +31,7 @@ namespace PersonalGameProject
         
         public void Movement()
         {
+            
             movementInput = new Vector3(0, 0, 0);
           
             
@@ -50,7 +51,7 @@ namespace PersonalGameProject
                 playerSpeed = 6;
             }
            
-            PlayerJump();
+            
             mouseInput.x = Raylib.GetMouseDelta().X * mouseSensitivity;
             mouseInput.y = Raylib.GetMouseDelta().Y * mouseSensitivity;
 
@@ -61,15 +62,6 @@ namespace PersonalGameProject
            
         }
 
-        private void PlayerJump()
-        {
-            if (Raylib.IsKeyPressed(KeyboardKey.Space) && hasJumped == false)
-            {
-                movementInput.z = jumpSpeed * playerSpeed * Raylib.GetFrameTime();
-
-            }
-
-
-        }
+       
     }
 }
