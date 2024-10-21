@@ -15,8 +15,9 @@ namespace PersonalGameProject
         Vector3 mouseInput = new Vector3(0, 0, 0);
         float playerSpeed = 5;
         float mouseSensitivity = .3f;
-        bool jump = false;
+        bool hasJumped = false;
         float jumpHeight = 4;
+        float jumpSpeed = 10;
         
 
         public void InitCamera()
@@ -48,11 +49,8 @@ namespace PersonalGameProject
             {
                 playerSpeed = 6;
             }
-            if (Raylib.IsKeyDown(KeyboardKey.Space) && jump == false)
-            {
-                movementInput.z = jumpHeight * Raylib.GetFrameTime();
-            
-            }
+           
+            PlayerJump();
             mouseInput.x = Raylib.GetMouseDelta().X * mouseSensitivity;
             mouseInput.y = Raylib.GetMouseDelta().Y * mouseSensitivity;
 
@@ -60,9 +58,18 @@ namespace PersonalGameProject
         }
         public void Draw()
         {
-            Raylib.DrawCube(new Vector3 (2,2,1),10,10,10,Color.Blue);
+           
         }
 
+        private void PlayerJump()
+        {
+            if (Raylib.IsKeyPressed(KeyboardKey.Space) && hasJumped == false)
+            {
+                movementInput.z = jumpSpeed * playerSpeed * Raylib.GetFrameTime();
 
+            }
+
+
+        }
     }
 }
