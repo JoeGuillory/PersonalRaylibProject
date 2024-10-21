@@ -24,8 +24,9 @@ namespace PersonalGameProject
             Raylib.SetTargetFPS(144);
             Raylib.DisableCursor();
             player.InitCamera();
-            pistol = Raylib.LoadModel(@"C:\Git Projects\PersonalRaylibProject\Models\Pistol\pistol.obj");
-            pistolTexture = Raylib.LoadTexture(@"C:\Git Projects\PersonalRaylibProject\Models\Pistol\pistol.png");
+            pistol = Raylib.LoadModel(@"C:\Dev\GitFolder\PersonalRaylibProject\Models\Pistol\pistol.obj");
+            pistolTexture = Raylib.LoadTexture(@"C:\Dev\GitFolder\PersonalRaylibProject\Models\Pistol\pistol.png");
+            
             
             
             
