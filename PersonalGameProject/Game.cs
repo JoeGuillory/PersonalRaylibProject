@@ -11,12 +11,12 @@ using System.Net.Security;
 
 namespace PersonalGameProject
 {
-    internal class Game
+    internal  class Game
     {
         Player player = new Player();
-        Model Pistol = new Model();
-        Material pistolMaterial = new Material();
-        int material = 0;
+        Model pistol = new Model();
+        Texture2D pistolTexture = new Texture2D();
+        
         
 
         public void Start()
@@ -24,7 +24,8 @@ namespace PersonalGameProject
             Raylib.SetTargetFPS(144);
             Raylib.DisableCursor();
             player.InitCamera();
-            Pistol = Raylib.LoadModel(@"C:\Git Projects\PersonalRaylibProject\Models\Pistol\pistol.obj");
+            pistol = Raylib.LoadModel(@"C:\Git Projects\PersonalRaylibProject\Models\Pistol\pistol.obj");
+            pistolTexture = Raylib.LoadTexture(@"C:\Git Projects\PersonalRaylibProject\Models\Pistol\pistol.png");
             
             
             
@@ -37,7 +38,7 @@ namespace PersonalGameProject
 
             player.Movement();
             Raylib.BeginMode3D(player.playerCamera);
-            Raylib.DrawModel(Pistol, new Vector3(1, 1, 0), 1,Color.Blank);
+            Raylib.DrawModel(pistol, new Vector3(1, 1, 0), 1,Color.Blank);
             player.Draw();
             Raylib.DrawGrid(200, 1);
             Raylib.DrawPlane(new Vector3(0.0f, 0.0f, 0.0f),new Vector2(32,32), Color.LightGray); // Draw ground
