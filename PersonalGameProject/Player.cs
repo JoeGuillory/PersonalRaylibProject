@@ -15,10 +15,7 @@ namespace PersonalGameProject
         Vector3 mouseInput = new Vector3(0, 0, 0);
         float playerSpeed = 5;
         float mouseSensitivity = .3f;
-        bool hasJumped = false;
-        float jumpHeight = 4;
-        float jumpSpeed = 10;
-        
+       
 
         public void InitCamera()
         {

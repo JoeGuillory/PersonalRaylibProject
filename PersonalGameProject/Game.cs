@@ -16,6 +16,8 @@ namespace PersonalGameProject
         Player player = new Player();
         Model pistol = new Model();
         Texture2D pistolTexture = new Texture2D();
+        Model sniper = new Model();
+        Texture2D sniperTexture = new Texture2D();
         
         
 
@@ -25,9 +27,14 @@ namespace PersonalGameProject
             Raylib.DisableCursor();
             player.InitCamera();
             //Need to change file loacation sorry i dont know another good way of doing this
+            sniper = Raylib.LoadModel(@"C:\Dev\GitFolder\PersonalRaylibProject\Models\Sniper\sniper.obj");
+            sniperTexture = Raylib.LoadTexture(@"C:\Dev\GitFolder\PersonalRaylibProject\Models\Sniper\sniper.png");
             pistol = Raylib.LoadModel(@"C:\Dev\GitFolder\PersonalRaylibProject\Models\Pistol\pistol.obj");
             pistolTexture = Raylib.LoadTexture(@"C:\Dev\GitFolder\PersonalRaylibProject\Models\Pistol\pistol.png");
-            
+
+            Console.WriteLine(pistol.MaterialCount);
+            Raylib.SetMaterialTexture(ref pistol, 2, MaterialMapIndex.Brdf, ref pistolTexture);
+            Raylib.SetMaterialTexture(ref sniper, 2, MaterialMapIndex.Albedo, ref sniperTexture);
             
             
             
@@ -37,10 +44,12 @@ namespace PersonalGameProject
         {
             
             
+            
 
             player.Movement();
             Raylib.BeginMode3D(player.playerCamera);
-            Raylib.DrawModel(pistol, new Vector3(1, 1, 0), 1,Color.Blank);
+            Raylib.DrawModel(pistol, (Vector3)player.playerCamera.Position + new Vector3(.5f,0,0), 10.0f, Color.White);
+            
             player.Draw();
             Raylib.DrawGrid(200, 1);
             Raylib.DrawPlane(new Vector3(0.0f, 0.0f, 0.0f),new Vector2(32,32), Color.LightGray); // Draw ground
@@ -52,7 +61,7 @@ namespace PersonalGameProject
             
 
             Raylib.EndMode3D();
-            Raylib.DrawText("Position: " + player.playerCamera.Position, 10, 10, 10,Color.Black);
+            Raylib.DrawText("Position: " + player.playerCamera.Position, 10, 10, 10,Color.White);
             
         }
         public void End()
