@@ -28,7 +28,7 @@ namespace PersonalGameProject
           
             Raylib.SetTargetFPS(144);
             Raylib.DisableCursor();
-            player.InitCamera();
+            player.InitPlayer();
 
             floor = Raylib.LoadModel(@"res\Models\floor.obj");
             barrel = Raylib.LoadModel(@"res\Models\barrel.obj");
@@ -51,11 +51,15 @@ namespace PersonalGameProject
 
             player.Movement();
             Raylib.BeginMode3D(player.playerCamera);
+            Raylib.DrawGrid(200, 1);
             
-            Raylib.DrawModel(floor, new Vector3(0.02f, 0.02f, 0), 2, Color.White);
+            Raylib.DrawModel(floor, new Vector3(0,0.05f, 0), 50, Color.White);
+            
+            
+            
+            
             
             player.Draw();
-            Raylib.DrawGrid(200, 1);
            
             
             

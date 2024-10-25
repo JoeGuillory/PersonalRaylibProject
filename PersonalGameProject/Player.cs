@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace PersonalGameProject
 {
@@ -15,15 +16,24 @@ namespace PersonalGameProject
         Vector3 mouseInput = new Vector3(0, 0, 0);
         float playerSpeed = 5;
         float mouseSensitivity = .3f;
+        public Model playerModel = new Model();
+        Texture2D playerTexture = new Texture2D();
+        Matrix4 position = new Matrix4();
+
        
 
-        public void InitCamera()
+        public void InitPlayer()
         {
+            
+            playerModel = Raylib.LoadModel(@"res\Knight.glb");
+            playerTexture = Raylib.LoadTexture(@"res\knight_texture.png");
+            Raylib.SetMaterialTexture(ref playerModel,0, MaterialMapIndex.Albedo, ref playerTexture);
             playerCamera.Position = new Vector3(0, 2, 1);
             playerCamera.Target = new Vector3(0.0f, 2.0f, 0.0f);
             playerCamera.Up = new Vector3(0, 1, 0);
             playerCamera.FovY = 100.0f;
             playerCamera.Projection = CameraProjection.Perspective;
+            
         }
         
         public void Movement()
